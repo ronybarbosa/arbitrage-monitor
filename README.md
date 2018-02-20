@@ -6,9 +6,9 @@ Para executar o projeto você precisará do navegador Chrome e do plugin de CORS
 Adicionar os seguintes URL patterns no plugin:
 
 ```bash
-*://support.kraken.com/*
-*://kraken.zendesk.com/*
-*://api.kraken.com/*
+# *://support.kraken.com/*
+# *://kraken.zendesk.com/*
+# *://api.kraken.com/*
 
 ### Quick start
 **Make sure you have Node version >= 6.0 and NPM >= 3**
