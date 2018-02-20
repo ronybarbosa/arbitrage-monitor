@@ -1,0 +1,108 @@
+<div class="my-3 p-3 bg-white rounded box-shadow">
+  <div class="row">
+
+
+    <div class="col">
+      <label for="inputCotacao">Cotação do Euro</label>
+      <input type="text" [(ngModel)]="valorEuro" class="form-control" placeholder="Cotação Euro">
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
+
+<div class="row">
+  <h6>Kraken para MercadoBitcoin</h6>
+  <table class="table table-bordered table-beds-matrix table-striped table-condensed sortable-bootstrap">
+    <thead>
+      <tr>
+        <th> Moeda </th>
+        <th>Diferença bruta</th>
+        <th>Diferença melhor caso</th>
+        <th>Diferença pior caso</th>
+        <th>Diferença liquida</th>
+        <th>Preço Kraken</th>
+        <th>Preço Mercadobitcoin</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-template ngFor let-arbitrage [ngForOf]="krakenToMercado">
+        <tr>
+          <td>
+            <strong>{{arbitrage.from}} to {{arbitrage.to}}</strong>
+          </td>
+          <td>{{arbitrage.grossDifference.toFixed(2)}}%</td>
+          <td>{{arbitrage.luckyDifference.toFixed(2)}}%</td>
+          <td>{{arbitrage.unluckyDifference.toFixed(2)}}%</td>
+          <td>
+            <strong>{{arbitrage.netDifference.toFixed(2)}}%</strong>
+          </td>
+          <td>{{arbitrage.fromPrice/ valorEuro}}</td>
+          <td>{{arbitrage.toPrice}}</td>
+
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+
+  <h6>MercadoBitcoin para Kraken</h6>
+  <table class="table table-bordered table-beds-matrix table-striped table-condensed sortable-bootstrap">
+    <thead>
+      <tr>
+        <th> Moeda </th>
+        <th>Diferença bruta</th>
+        <th>Diferença melhor caso</th>
+        <th>Diferença pior caso</th>
+        <th>Diferença liquida</th>
+        <th>Preço Mercadobitcoin</th>
+        <th>Preço Kraken</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <ng-template ngFor let-arbitrage [ngForOf]="mercadoToKraken">
+        <tr>
+          <td>
+            <strong>{{arbitrage.from}} to {{arbitrage.to}}</strong>
+          </td>
+          <td>{{arbitrage.grossDifference.toFixed(2)}}%</td>
+          <td>{{arbitrage.luckyDifference.toFixed(2)}}%</td>
+          <td>{{arbitrage.unluckyDifference.toFixed(2)}}%</td>
+          <td>
+            <strong>{{arbitrage.netDifference.toFixed(2)}}%</strong>
+          </td>
+          <td>{{arbitrage.fromPrice}}</td>
+          <td>{{arbitrage.toPrice/ valorEuro}}</td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+
+</div>
+<div class="my-3 p-3 bg-white rounded box-shadow">
+  <div class="row">
+
+
+    <div class="col">
+
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" [(ngModel)]="alerta1" class="custom-control-input" id="alerta1">
+        <label class="custom-control-label" for="alerta1">Habilitar alerta 1 Kraken-Mercadobitcoin</label>
+        <div class="col" *ngIf="alerta1">
+          <label for="inputCotacao">Porcentagem para emitir alerta 1</label>
+          <input type="text" class="form-control" [(ngModel)]="porcentagemAlerta1KrakenMercado" placeholder="Porcentagem alerta 1">
+        </div>
+      </div>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" [(ngModel)]="alerta2" class="custom-control-input" id="alerta2">
+        <label class="custom-control-label" for="alerta2">Habilitar alerta 2 Kraken-Mercadobitcoin</label>
+        <div class="col" *ngIf="alerta2">
+          <label for="inputCotacao">Porcentagem para emitir alerta 2</label>
+          <input type="text" class="form-control" [(ngModel)]="porcentagemAlerta2KrakenMercado" placeholder="Last name">
+        </div>
+      </div>
+    </div>
+    <div class="col">
+
+    </div>
+  </div>
+</div>
